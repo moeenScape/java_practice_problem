@@ -7,6 +7,6 @@ public class arrayProblem {
     }
 
     public static void getStringValue(String name) {
-        System.out.println("My name is "+ name);
+        System.out.println("My name is " + name);
     }
 }
