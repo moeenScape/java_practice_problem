@@ -1,6 +1,7 @@
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Student {
@@ -100,6 +101,27 @@ public class Student {
 
         System.out.println(maxDept);
 
+//        Q7 find male female Average age
+
+        Map<String, Double> studentByGender =
+                studentList.stream()
+                        .collect(Collectors.groupingBy(Student::getGender,Collectors.averagingInt(Student::getAge)));
+
+        System.out.println(studentByGender);
+
+//        Q8 find Highest Rank Of each Department
+
+        Map<String, Optional<Student>> studentRank = studentList.stream()
+                .collect(Collectors.groupingBy(Student::getDept,
+                        Collectors.minBy(Comparator.comparing(Student::getRank))));
+
+        System.out.println(studentRank);
+
+//        Q9 find second rank Student
+
+        Optional<Student> first = studentList.stream().sorted(Comparator.comparing(Student::getRank, Comparator.reverseOrder())).skip(1).findFirst();
+
+        System.out.println(first);
     }
 
 
